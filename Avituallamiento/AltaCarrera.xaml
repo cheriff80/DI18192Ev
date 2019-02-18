@@ -1,0 +1,11 @@
+﻿<Window x:Class="AplicacionAvituallamiento.AltaCarrera"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AltaCarrera" Height="312.453" Width="415.472">
+    <Grid>
+        <Label Content="Nombre Carrera:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.456,1.275" Width="112"/>
+        <TextBox x:Name="BoxNombreCarrera" Text="{Binding Path=NombreCarrera, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="150,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132"/>
+        <Button x:Name="BtnAgregarCarrera" Content="Agregar" HorizontalAlignment="Left" Margin="207,244,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.231,0.583" Click="BtnAgregarCarrera_Click"/>
+
+    </Grid>
+</Window>
