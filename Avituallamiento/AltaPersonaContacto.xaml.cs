@@ -26,6 +26,7 @@ namespace AplicacionAvituallamiento
         private PersonaContacto personaContacto;
         private Boolean modificar;
         private int posicion;
+        private int errores;
         
 
         public AltaPersonaContacto(LogicaNegocio logicaNegocio)
@@ -47,13 +48,38 @@ namespace AplicacionAvituallamiento
             modificar = true;
         }
 
-        private void BtnNuevo_Click(object sender, RoutedEventArgs e)
+        //constructor consultar
+        public AltaPersonaContacto(LogicaNegocio logicaNegocio, PersonaContacto personaContacto, int posicion, int consultar)
+        {
+            InitializeComponent();
+            this.logicaNegocio = logicaNegocio;
+            this.personaContacto = personaContacto;
+            this.DataContext = personaContacto;
+            this.posicion = posicion;
+            this.modificar = true;
+            BtnAgregarContacto.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnAgregarContacto_Click(object sender, RoutedEventArgs e)
         {
             if (modificar)
                 logicaNegocio.modificarPersonaContacto(personaContacto, posicion);
             else
             logicaNegocio.aniadirPersonaContacto(personaContacto);
             this.Close();
+
+        }
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errores++;
+            else
+                errores--;
+
+            if (errores == 0)
+                BtnAgregarContacto.IsEnabled = true;
+            else
+                BtnAgregarContacto.IsEnabled = false;
 
         }
 

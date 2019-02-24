@@ -97,7 +97,8 @@ namespace AplicacionAvituallamiento.dto
             get { string result = "";
             if (columnName == "Carrera")
             {
-                if (string.IsNullOrEmpty(carrera.NombreCarrera))
+                
+                if (Carrera ==  null)
                     result = "Debe introducir la carrera";
             }
             if (columnName == "PuntoKilometrico")
@@ -107,7 +108,7 @@ namespace AplicacionAvituallamiento.dto
             }
             if (columnName == "PersonaContacto")
             {
-                if (string.IsNullOrEmpty(personaContacto.NombrePersonaContacto))
+                if (PersonaContacto == null)
                     result = "Debe introducir persona de contacto";
             }
             if (columnName == "ListaMateriales")

@@ -15,6 +15,7 @@ namespace AplicacionAvituallamiento.Logica
         public ObservableCollection<Carrera> listaCarreras { get; set; }
         public ObservableCollection<PersonaContacto> listaPersonasContacto { get; set; }
         public ObservableCollection<Avituallamiento> listaAvituallamientos { get; set; }
+        public Boolean sinExistencias;
 
         //constructor de la lógica de negocio
         public LogicaNegocio()
@@ -68,12 +69,21 @@ namespace AplicacionAvituallamiento.Logica
                     {
                         p.CantidadProducto -= producto.CantidadProducto;
                         avituallamiento.ListaMateriales.Add(producto);
+                        sinExistencias = false;
                     }
 
-                    else
+                    if(producto.CantidadProducto>p.CantidadProducto)
                     {
-                        producto.CantidadProducto = p.CantidadProducto;
+                        VentanaRetirarAlmacen va = new VentanaRetirarAlmacen(this,avituallamiento,1);
+                        sinExistencias = true;
+                        va.Show();
+                    }
+                    if(producto.CantidadProducto == p.CantidadProducto)
+                    {
+                        
+                        avituallamiento.ListaMateriales.Add(producto);
                         listaProductos.Remove(producto);
+                        sinExistencias = false;
                     }
                 }
             }

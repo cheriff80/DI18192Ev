@@ -28,6 +28,7 @@ namespace AplicacionAvituallamiento
         public ObservableCollection<string> listaTipos { get; set; }
         private int posicion;
         private Boolean modificar;
+        private int errores;
             
         //constructor para producto nuevo
         public AltaProducto(LogicaNegocio logicaNegocio)
@@ -95,6 +96,20 @@ namespace AplicacionAvituallamiento
             listaTipos.Add("bebida");
             listaTipos.Add("comida");
             listaTipos.Add("materialSanitario");
+        }
+
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errores++;
+            else
+                errores--;
+
+            if (errores == 0)
+                BtnAniadir.IsEnabled = true;
+            else
+                BtnAniadir.IsEnabled = false;
+
         }
 
         

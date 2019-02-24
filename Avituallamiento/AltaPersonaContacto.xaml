@@ -4,10 +4,10 @@
         Title="AltaPersonaContacto" Height="300" Width="357">
     <Grid>
         <Label x:Name="LabNombreContacto" Content="Nombre: " HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="58"/>
-        <TextBox x:Name="BoxNombrePersonaContacto" Text="{Binding Path=NombrePersonaContacto, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="85,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <TextBox x:Name="BoxNombrePersonaContacto" Validation.Error ="Validation_Error" Text="{Binding Path=NombrePersonaContacto, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="85,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
         <Label x:Name="LabTelefonoContacto" Content="Teléfono: " HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="58"/>
-        <TextBox x:Name="BoxTelefonoPersonaContacto" Text="{Binding Path=TelefonoPersonaContacto, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="85,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
-        <Button x:Name="BtnNuevo" Content="Agregar" HorizontalAlignment="Left" Margin="207,230,0,0" VerticalAlignment="Top" Width="75" Click="BtnNuevo_Click"/>
+        <TextBox x:Name="BoxTelefonoPersonaContacto" Validation.Error ="Validation_Error" Text="{Binding Path=TelefonoPersonaContacto, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="85,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197"/>
+        <Button x:Name="BtnAgregarContacto" Content="Agregar" HorizontalAlignment="Left" Margin="207,230,0,0" VerticalAlignment="Top" Width="75" Click="BtnAgregarContacto_Click"/>
 
     </Grid>
 </Window>

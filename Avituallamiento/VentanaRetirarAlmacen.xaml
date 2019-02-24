@@ -1,15 +1,16 @@
 ﻿<Window x:Class="AplicacionAvituallamiento.VentanaRetirarAlmacen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="VentanaRetirarAlmacen" Height="300" Width="480">
+        Title="VentanaRetirarAlmacen" Height="300" Width="546">
     <Grid>
         <DataGrid x:Name="DataGridAlmacen" ItemsSource="{Binding listaProductos}" HorizontalAlignment="Left" Margin="21,41,0,0" VerticalAlignment="Top" Height="193" Width="296" SelectionChanged="DataGridAlmacen_SelectionChanged" />
         <Label Content="Producto:" HorizontalAlignment="Left" Margin="344,44,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelProducto" Content="" HorizontalAlignment="Left" Margin="344,75,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label x:Name="LabelProducto" Content="" HorizontalAlignment="Left" Margin="377,75,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="344,116,0,0" VerticalAlignment="Top" Width="61"/>
-        <TextBox x:Name="BoxCantidadRetirar" HorizontalAlignment="Left" Height="23" Margin="410,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"/>
+        <TextBox x:Name="BoxCantidadRetirar" HorizontalAlignment="Left" Height="23" Margin="472,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"/>
         <Button x:Name="BtnRetirar" Content="Retirar" HorizontalAlignment="Left" Margin="377,209,0,0" VerticalAlignment="Top" Width="75" Click="BtnRetirar_Click"/>
         <Label Content="Productos almacenados:" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label x:Name="LblNoProducto" Content="" HorizontalAlignment="Left" Margin="344,167,0,0" VerticalAlignment="Top" Width="170" FontSize="9"/>
 
     </Grid>
 </Window>

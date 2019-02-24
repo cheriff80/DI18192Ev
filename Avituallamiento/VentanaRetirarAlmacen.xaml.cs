@@ -38,6 +38,19 @@ namespace AplicacionAvituallamiento
 
         }
 
+        public VentanaRetirarAlmacen(LogicaNegocio logicaNegocio, Avituallamiento avituallamiento,int numero)
+        {
+            InitializeComponent();
+            DataGridAlmacen.DataContext = logicaNegocio;
+            this.logicaNegocio = logicaNegocio;
+            this.avituallamiento = avituallamiento;
+            LblNoProducto.Content = "NO EXISTENCIAS";
+
+            //this.DataContext = producto;
+
+
+        }
+
         private void BtnRetirar_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridAlmacen.SelectedIndex != -1)
@@ -53,12 +66,17 @@ namespace AplicacionAvituallamiento
                     producto.TipoProducto, producto.Precio, numero);
                 
                 logicaNegocio.retirarProducto(productoRetirar,avituallamiento);
+                if (!logicaNegocio.sinExistencias) 
+                {
+                    //inicio la ventana entrando por el constructor de modificar
+
+                    AltaAvituallamiento av = new AltaAvituallamiento(logicaNegocio, avituallamiento);
+                    this.Close();
+                    av.Show();
+                }
+
                 
-                //inicio la ventana entrando por el constructor de modificar
-                
-                AltaAvituallamiento av = new AltaAvituallamiento(logicaNegocio,avituallamiento);
-                this.Close();
-                av.Show();
+               
                 
             }
         }

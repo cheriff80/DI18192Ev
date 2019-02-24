@@ -109,5 +109,28 @@ namespace AplicacionAvituallamiento
                 aav.Show();
             }
         }
+
+        private void BtnConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboBoxCarreras.SelectedIndex != -1)
+            {
+                Carrera carrera = (Carrera)ComboBoxCarreras.SelectedItem;
+                AltaCarrera ac = new AltaCarrera(logicaNegocio, (Carrera)carrera.Clone(), ComboBoxCarreras.SelectedIndex,1);
+                ac.Show();
+            }
+            if (ComboBoxContactos.SelectedIndex != -1)
+            {
+                PersonaContacto pc = (PersonaContacto)ComboBoxContactos.SelectedItem;
+                AltaPersonaContacto apc = new AltaPersonaContacto(logicaNegocio, (PersonaContacto)pc.Clone(), ComboBoxContactos.SelectedIndex);
+                apc.Show();
+            }
+            if (ComboBoxAvituallamientos.SelectedIndex != -1)
+            {
+                Avituallamiento av = (Avituallamiento)ComboBoxAvituallamientos.SelectedItem;
+                AltaAvituallamiento aav = new AltaAvituallamiento(logicaNegocio, (Avituallamiento)av.Clone(), ComboBoxAvituallamientos.SelectedIndex,1);
+                aav.Show();
+            }
+
+        }
     }
 }

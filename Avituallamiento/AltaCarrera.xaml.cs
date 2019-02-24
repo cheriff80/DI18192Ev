@@ -25,6 +25,7 @@ namespace AplicacionAvituallamiento
         private Carrera carrera;
         private Boolean modificar;
         private int posicion;
+        private int errores;
 
         public AltaCarrera(LogicaNegocio logicaNegocio)
         {
@@ -44,6 +45,19 @@ namespace AplicacionAvituallamiento
             this.posicion = posicion;
             modificar = true;
         }
+
+        //constructor para modificar
+        public AltaCarrera(LogicaNegocio logicaNegocio, Carrera carrera, int posicion,int consultar)
+        {
+            InitializeComponent();
+            this.logicaNegocio = logicaNegocio;
+            this.carrera = carrera;
+            this.DataContext = carrera;
+            this.posicion = posicion;
+            this.modificar = false;
+            BtnAgregarCarrera.Visibility = Visibility.Hidden;
+
+        }
         private void BtnAgregarCarrera_Click(object sender, RoutedEventArgs e)
         {
             if (modificar)
@@ -53,5 +67,6 @@ namespace AplicacionAvituallamiento
             this.Close();
 
         }
+       
     }
 }

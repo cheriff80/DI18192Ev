@@ -18,7 +18,7 @@
         </Menu>
         <Button x:Name="BtnBorrar" Content="Borrar" Margin="367,262,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Click="BtnBorrar_Click"/>
         <Button x:Name="BtnModificar" Content="Modificar" Margin="458,262,0,0" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top" Click="BtnModificar_Click"/>
-        <Button x:Name="BtnConsultar" Content="Consultar" Margin="549,262,0,0" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="BtnConsultar" Content="Consultar" Margin="549,262,0,0" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top" Click="BtnConsultar_Click"/>
         <Label Content="Lista de contactos" HorizontalAlignment="Left" Margin="25,54,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="ComboBoxContactos" ItemsSource="{Binding Path=listaPersonasContacto}" HorizontalAlignment="Left" Margin="25,85,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Lista Carreras" HorizontalAlignment="Left" Margin="203,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,1.269" Height="26" Width="100"/>

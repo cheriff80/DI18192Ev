@@ -28,6 +28,7 @@ namespace AplicacionAvituallamiento
         private Boolean modificar = false;
         private int  posicion;
         private int indexCombo;
+        private int errores;
 
         //Constructor
         public AltaAvituallamiento(LogicaNegocio logicaNegocio)
@@ -36,8 +37,12 @@ namespace AplicacionAvituallamiento
             this.logicaNegocio = logicaNegocio;
             ComboBoxCarreras.DataContext = logicaNegocio;
             ComboBoxPersonasContacto.DataContext = logicaNegocio;
-            ListaProductosAvituallamiento.DataContext = avituallamiento;
+            
+            
             avituallamiento = new Avituallamiento();
+            TbNombreCarrera.DataContext = avituallamiento;
+            TbNombreContacto.DataContext = avituallamiento;
+            ListaProductosAvituallamiento.DataContext = avituallamiento;
             BoxPuntoKilometrico.DataContext = avituallamiento;
             this.DataContext = avituallamiento;
         }
@@ -50,18 +55,11 @@ namespace AplicacionAvituallamiento
             InitializeComponent();
             this.logicaNegocio = logicaNegocio;
             this.avituallamiento = avituallamiento1;
-            //BoxPuntoKilometrico.DataContext = avituallamiento;
             TbNombreCarrera.DataContext = avituallamiento.Carrera;
             TbNombreContacto.DataContext = avituallamiento.PersonaContacto;
-            //TbNombreContacto.Text = avituallamiento.PersonaContacto.ToString();
-            //TbNombreCarrera.Text = avituallamiento.Carrera.ToString();
             this.DataContext = avituallamiento;
-            
             ComboBoxCarreras.DataContext = logicaNegocio;
             ComboBoxPersonasContacto.DataContext = logicaNegocio;
-            
-            //ComboBoxCarreras.SelectedIndex = indexCombo;
-           
             this.modificar = true;
             this.posicion = 0;
         }
@@ -76,8 +74,25 @@ namespace AplicacionAvituallamiento
             TbNombreCarrera.DataContext = avituallamiento.Carrera;
             TbNombreContacto.DataContext = avituallamiento.PersonaContacto;
             this.DataContext = avituallamiento;
-            this.modificar = true;
             this.posicion = posicion;
+            this.modificar = true;
+        }
+
+        //constructor para consultar
+        public AltaAvituallamiento(LogicaNegocio logicaNegocio, Avituallamiento avituallamiento, int posicion,int numero)
+        {
+            InitializeComponent();
+            this.logicaNegocio = logicaNegocio;
+            this.avituallamiento = avituallamiento;
+            ComboBoxCarreras.DataContext = logicaNegocio;
+            ComboBoxPersonasContacto.DataContext = logicaNegocio;
+            TbNombreCarrera.DataContext = avituallamiento.Carrera;
+            TbNombreContacto.DataContext = avituallamiento.PersonaContacto;
+            this.DataContext = avituallamiento;
+            this.posicion = posicion;
+            this.modificar = false;
+            BtnAgregarAvituallamiento.Visibility = Visibility.Hidden;
+            BtnAniadirMaterial.Visibility = Visibility.Hidden;
         }
 
         private void BtnAniadirMaterial_Click(object sender, RoutedEventArgs e)
@@ -87,12 +102,14 @@ namespace AplicacionAvituallamiento
                 //casteo la carrera seleccionada en el ComboBox
                 carrera = (Carrera)ComboBoxCarreras.SelectedItem;
                 avituallamiento.Carrera = carrera;
+                
                 indexCombo = ComboBoxCarreras.SelectedIndex;
 
                 //añado la lista material
                 carrera.ListaAvituallamientos.Add(avituallamiento);
 
                 avituallamiento.PersonaContacto = (PersonaContacto)ComboBoxPersonasContacto.SelectionBoxItem;
+                avituallamiento.Carrera = (Carrera)ComboBoxCarreras.SelectionBoxItem;
             }
             
             VentanaRetirarAlmacen vra = new VentanaRetirarAlmacen(logicaNegocio,avituallamiento);
@@ -114,8 +131,9 @@ namespace AplicacionAvituallamiento
 
         private void ComboBoxCarreras_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            avituallamiento.Carrera = (Carrera)ComboBoxCarreras.SelectedItem;
             TbNombreCarrera.Text = ComboBoxCarreras.SelectedValue.ToString();
-            avituallamiento.Carrera = (Carrera) ComboBoxCarreras.SelectedItem;
+            
         }
 
         private void ComboBoxPersonasContacto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,6 +141,21 @@ namespace AplicacionAvituallamiento
             
             avituallamiento.PersonaContacto = (PersonaContacto) ComboBoxPersonasContacto.SelectedItem;
             TbNombreContacto.Text = avituallamiento.PersonaContacto.NombrePersonaContacto;
+
+        }
+
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errores++;
+            else
+                errores--;
+
+            if (errores == 0)
+                BtnAgregarAvituallamiento.IsEnabled = true;
+            else
+                BtnAgregarAvituallamiento.IsEnabled = false;
+
         }
 
         
